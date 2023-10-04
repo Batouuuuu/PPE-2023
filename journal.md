@@ -28,12 +28,40 @@ et j'utilise >> git pull, afin de récuppérer les dossiers mis à jours sous gi
 
 ## Exercice de manipulation des dossiers sous bash 
 
-(travail à expliquer)
+Nous déplaçons les fichiers dans des répertoires créer au préalable (mkdir…) et grâce aux caractères jokers nous pouvons spécifier les fichiers à déplacer 
+ex : >> mv 2016_02* ../2016/02 et on réalise le même principe pour les jpg, les ann...   
+
+N.B : le travail était assez rébarbatif peut-etre existe t’il un moyen plus rapide pour automatiser le rangement de tous ces docs
 
 
 
 
 
-Afin de synchroniser avec les modifications il faut faire : 
+Afin de synchroniser avec les modifications il faut faire: 
 
 >>git fetch → git status (permet de voir si on est en retard) → git pull 
+
+
+PROBLEMES RENCONTRES ET RESOLUS :
+
+-Problèmes utilisateur inconnu :
+Au début lorsque je voulais pull le dossier qui est sur GitHUb cela m’indiquait que l’utilisateur n’était pas connu ‘who are you’. J’ai du configuré mon username: git config --global user.name "Votre Nom" et mon mail : git config --global user.email "votre@email.com"
+
+Problème pour push ver GitHub :
+J’ai essayé de push mon journal de bord depuis le dossier local vers le dossier synchro GitHub. Mais cela me demandais un nom d’utilisateur et un mot de passe. Apparemment les mots de passe pour lié au bash n’existe plus depuis 2021, j’ai donc généré un jeton afin de pouvoir le mettre à la place du mot de passe demandé et les push fonctionnent.
+
+Problème pour push correctement un fichier spécifique :
+Je ne voulais que push le journal or celui-ci se trouve dans un répertoire ou on retrouve un README.Il faut utiliser git add journal.md afin de bien prendre en compte les modifs >> git commit -m «message du commit». 
+Créer un tag >>git tag -a -m "Cette fois c'est la bonne" testTAg
+On push sur la branche main >> git push origin main
+On push le tag >> git push origin testTAg.
+
+
+Résumé :
+
+Récupérer les modifs sur github :  git fetch → git status → git pull 
+
+Push les modifs sur github : git add doc.txt → git commit -m «message» → git tag -a -m "Cette fois c'est la bonne" <tag>→ git push origin main → git push origin <tag> 
+
+
+
