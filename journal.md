@@ -29,3 +29,11 @@ et j'utilise >> git pull, afin de récuppérer les dossiers mis à jours sous gi
 ## Exercice de manipulation des dossiers sous bash 
 
 (travail à expliquer)
+
+
+
+
+
+Afin de synchroniser avec les modifications il faut faire : 
+
+>>git fetch → git status (permet de voir si on est en retard) → git pull 
