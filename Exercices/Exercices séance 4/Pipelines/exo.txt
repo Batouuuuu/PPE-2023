@@ -1,0 +1,77 @@
+• Compter le nombre d’annotations par année (2016, 2017 et 2018),
+
+Comme j'ai utilisé des répertoires pour classer mes photos je vais prendre l'année en général. J'ouvre le terminal là où se trouve le dossier 2016
+
+Pour 2016:
+>> cat */*.ann | wc -l
+>>9942
+
+Pour 2017: (on pense a bien changé le cd)
+>>7129
+
+Pour 2018:
+>>7561
+
+
+• Limiter ce comptage aux lieux (Location),
+
+Pour ne compter que les lieux dans nos documents ils sont identifiés par Location donc on va faire un grep
+
+Pour 2016:
+>> cat */*.ann | grep Location | wc -l (wc -l toujours à la fin car c'est la sortie)
+>>3144
+
+
+Pour 2017:
+>>2466
+
+Pour 2018:
+>>3110
+
+
+• Sauvegarder ces résultats dans un (seul) fichier,
+
+La fonction echo me permet d'écrire dans mon doc. Il faut aussi différencier > et >> car le premier supprime le contenu du doc pour écrire par dessus tandis que l'autre écrit à la fin du doc
+
+Pour 2016:
+>>echo "Location en 2016 :" >> /home/batou/output.txt
+>> cat 2016/*/*.ann | grep Location | wc -l >> /home/batou/output.txt
+
+Pour 2017:
+>>echo "Location en 2017 :" >> /home/batou/output.txt
+>> cat 2017/*/*.ann | grep Location | wc -l >> /home/batou/output.txt
+
+Pour 2018:
+>>echo "Location en 2018 :" >> /home/batou/output.txt
+>> cat 2018/*/*.ann | grep Location | wc -l >> /home/batou/output.txt
+
+
+
+
+• établir le classement des lieux les plus cités.
+
+Comme les docs sont écrits en colonne on utilise cut -f pour indiquer que seul cette colonne nous intéresse, ensuite sort permet de classer par ordre alphabétique, uniq -c permet de compter,
+ sort -nr permet de classer de la plus grande occurence à la plus petite nr = reverse et enfin head -n20 permet de n'afficher que les 20 premières lignes
+
+Pour 2016 :
+>> echo "Classement des lieux les plus cités en 2018" >> /home/batou/output.txt
+>>cat 2016/*/*.ann | grep Location | cut -f3 | sort | uniq -c | sort -nr | head -n20 >> /home/batou/output.txt
+
+Pour 2017 :
+>> echo "Classement des lieux les plus cités en 2017" >>/home/batou/output.txt
+>>cat 2017/*/*.ann | grep Location | cut -f3 | sort | uniq -c | sort -nr | head -n20 >>/home/batou/output.txt
+
+Pour 2018 :
+>> echo "Classement des lieux les plus cités en 2018" >>/home/batou/output.txt
+>>cat 2018/*/*.ann | grep Location | cut -f3 | sort | uniq -c | sort -nr | head -n20 >>/home/batou/output.txt
+
+
+
+• trouver les annotations les plus fréquentes pour votre mois de naissance, toutes
+années confondues.
+
+Toutes années confondues signifie que nous allons remonter d'un cran dans notre chemin absolu afin de prendre toutes les années en compte
+
+
+>>echo "Annotations les plus fréquentes pour mon mois de naissance :" >>/home/batou/output.txt
+>>cat */*/*.ann | grep -o '[0-9]\+ décembre [0-9]\+' | sort | uniq -c | sort -nr >>/home/batou/output.txt
