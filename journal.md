@@ -84,3 +84,22 @@ Pour observer ce changement il faut faire git fetch et ensuite git status qui no
 
 La solution est de faire git log récuppèrer l’identifiant SHA de l’erreur et on fait git reset HEAD~1.
 On fait git pull mais il y a toujours un problème donc deux solutions s’offrent à nous : git reset –hard HEAD ce qui supprime la version qui pose problème.
+
+
+4eme séance 11/10
+
+Dans cette séance nous avons appris de nouvelles notions de commandes Unix comme les pipelines ou encore les scripts
+
+Pour ce qui est des pipelines elles servent à communiquer entre différents programme par le biais de "pipe : | "
+Par exemple si je souhaite que mon retrouver toutes les fois où un mot se trouve dans un programme :
+cat exemple.txt | grep --color université | wc -l (le -l permet de n'afficher que le compte des lignes) Ps: wc -l doit être placé en dernier car c'est la sortie
+
+
+Pour les exercices sur les pipelines voilà ce qu'il faut retenir :
+
+Différence entre > et >> le premier écrit en supprimant dans le doc et l'autre écrit à la fin du doc   soit cat text.txt | grep Location | wc -l >>/home/batou/output.txt
+echo permet d'écrire dans un doc ex : echo "J'aime le chocolat : " >> /home/batou/output.txt
+Nous avons vu sort qui permet de classer par ordre alphabétique si on lui rajoute -nr cela trie dans l'autre sens, uniq -c qui permet de compter les occurences, head -n20 permet de n'afficher que 20 résultats,
+cut -f3 coupe et ne garde que la 3ème colonne (dans le cas où les docs est un classeur)
+
+ex de commande : >>cat */*/*.ann | grep -o '[0-9]\+ décembre [0-9]\+' | sort | uniq -c | head -n20 | sort -nr >>/home/batou/output.txt
