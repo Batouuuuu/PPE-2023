@@ -5,17 +5,18 @@
 #accepter * pour l’année et le mois.
 
 
-FICHIER="/home/batou/Documents/M1\ TAL/Programmation\ et\ projets\ encadrés/Travail\ perso/PPE-2023/Manip\ fichiers/ANN/*/*/*.ann"
-
 
 ANNEE=$1
 MOIS=$2
 NOMBRE_RESULTATS=$3
 
+FICHIER="/home/batou/Documents/M1\ TAL/Programmation\ et\ projets\ encadrés/Travail\ perso/PPE-2023/Manip\ fichiers/ANN/$ANNE/$MOIS/*.ann"
 
-RESULTAT=$(cat $ANNEE/*/*.ann | grep Location | cut -f3 | sort | uniq -c | sort -nr | head -n$NOMBRE_RESULTATS) 
+
+
+
+RESULTAT=$(cat $FICHIER | grep Location | cut -f3 | sort | uniq -c | sort -nr | head -n$NOMBRE_RESULTATS)
 
 echo "$RESULTAT"
 
 
-chmod +x Exo2.sh
