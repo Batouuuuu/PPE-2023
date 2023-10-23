@@ -103,3 +103,35 @@ Nous avons vu sort qui permet de classer par ordre alphabétique si on lui rajou
 cut -f3 coupe et ne garde que la 3ème colonne (dans le cas où les docs est un classeur)
 
 ex de commande : >>cat */*/*.ann | grep -o '[0-9]\+ décembre [0-9]\+' | sort | uniq -c | head -n20 | sort -nr >>/home/batou/output.txt
+
+
+Pour les exercices sur les scripts :
+
+Difficultés : Je ne suis pas sûr de comprendre ce qui est vraiment attendu dans ces exos, la différence entre entité et type d'entité
+De plus, je ne parviens plus à préciser le chemin absolu d'un document je ne parviens pas à lancer mes nouveaux scripts.
+Pour les exercices, je n'ai pas cherché à faire de boucle et ai appelé bêtement 3 fois les script où il fallait l'appeler 3 fois.
+
+Ce que je retiens est que le script doit commencer par un shebang #!bin/bash 
+
+
+5eme séance 18/10
+
+Lors de mes derniers test je disais que le script doit se terminer par chmod +x nom_du_script.sh. Mais non cela est une façon de rendre mon script exécutable dans le terminal 
+Je dois faire chmod +x NomDuScript pour donner la permission et le rendre exécutable.
+Ensuite en me mettant dans le terminal à l'endroit où il est et en écrivant ./Exo1.sh 2016. 2016 est ici la variable.
+
+J'ai bien compris comment me servir des instructions conditionnelles pour demander à l'utilisateur de rentrer une variable valide.
+Seulement, je ne parviens toujours pas à spécifier le chemin absolu dans ma variable. Il semblerait que les caractères jokers soient mal interprétés.
+Par exemple :
+
+FICHIER="/home/batou/Documents/M1 TAL/Programmation et projets encadrés/Travail perso/PPE-2023/Manip fichiers/ANN/$ANNEE/*/*.ann"
+
+Malgré cet inconvénient, je me suis senti plus à l'aise pour faire des scripts que la première fois
+
+-n permet de vérifier qu'une chaine de caractère n'est pas vide
+-ne permet de vérifier le nombre d'argument dans une condition if : if [ $# -ne 3 ]
+
+
+Travail sur le projet
+
+Avec mon groupe constitué de Keming et Marie nous avons commencé à faire la liste des mots qui nous semblaient interessant pour le projet à réaliser. Nous hésitons encore entre plusieurs mots. Nous ne sommes pas certains d’avoir vraiment compris le critère de sélection que nous devions privilégier pour trouver un mot. Le mot doit-il être polysémique par exemple. Nous poserons ces questions à la prochaine séance
