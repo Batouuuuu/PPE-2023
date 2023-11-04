@@ -1,0 +1,93 @@
+
+
+Exercice 1 : Lire les lignes d'un fichier en bash
+
+1. Pourquoi ne pas utiliser cat ?
+
+Nous n'utiliserons pas cat puisque cat n'est pas utile dans notre exercice. Cat permet d'afficher le contenu d'un fichier mais ne permet pas de faire le traitement que l'on souhaite dessus.
+
+2. Comment transformer "urls/fr.txt" en paramètre du script ?
+
+Pour transformer "urls/fr.txt" en paramètre du script rien de plus simple. Il suffit d'écrire URL= $1, cela signifie que que lorsque l'utilisateur lancera le script il devra specifier le chemin d'accès au dossier en premier.
+
+2.1 S’assurer qu’on donne bien un argument au script, sinon on s’arrête
+
+Pour s'assurer que l'utilisateur rentre bien un argument au script on doit utiliser une instruction conditionnelle if dans laquelle on peut mettre plusieurs option comme -n (si la chaine n'est pas vide),
+-z (vrai si la chaine est vide) mais dans notre cas nous utiliserons la variable $# qui compte le nombre d'argument ainsi nous écrirons : if [ $# -ne 1 ] (si le nombre de paramètre n'est pas égal à 1).
+
+if [ $# -ne 1 ]
+then
+	echo "Il manque un argument"
+	exit
+
+
+3. Comment afficher le numéro de ligne avant chaque URL (sur la même ligne) ?
+• Bien séparer les valeurs par des tabulations
+
+Pour afficher le numéro de ligne avant chaque URL il va falloir définir une variable incrémentale. Nous l'appelerons numeroLigne=1. Nous incrémenterons cette variable à chaque ligne lu donc cette opération se trouvera
+après la lecture. Il faut pouvoir prendre en compte les caractères despecifier comme le \t qui permet de faire une tabulation pour le prendre en compte il faut donner l'option -e dans l'echo
+
+
+numeroLigne=1
+while read -r line;
+do
+	echo -e "${numeroLigne}\t${line}";
+	numeroLigne=$(expr $numeroLigne + 1)
+done < "$CHEMIN"
+
+
+
+
+Exercice 2 : Récuperer les métadonnées de collecte
+
+Après l’exercice 1 fait, on va rajouter des informations à chaque ligne, toujours
+séparées par des tabulations :
+
+
+1. le code HTTP de réponse à la requête
+
+Pour pouvoir récupérer ces pages il va être nécéssaire d'utiliser Lynx et la commande curl. Afin de récupérer le code de réponse HTTP il faut utiliser l'option -I qui renvoit la réponse serveur.
+Ex: curl -I https://www.perdu.com.
+
+Il faut donc que lorsque le script lit une ligne il effectue le curl -I. Pour ce faire nous allons définir une variable http qui curl la ligne. Nous écrirons ensuite cette variable dans notre echo -e
+en la despecialisant avect \t pour avoir une tabulation.
+
+while read -r line;
+do
+	http=$(curl -I "$line")
+	echo -e "${numeroLigne}\t${line}\t${http}";
+	numeroLigne=$(expr $numeroLigne + 1)
+done < "$CHEMIN"
+
+
+1.1 certaines erreurs peuvent être corrigées
+
+Nous pouvons observer les différents codes HTTP : 200 signifie que c'est une réussite, 300 : une redirection, 400 : erreur client et 500 : erreur serveurs.
+J'imagine que dans cette question les erreurs qui peuvent être corrigées sont les erreurs 300, puisque en effet elles renvoient sur d'autres pages. Il suffirait de préciser d'utiliser la page de redirection
+plutot que celle specifie dans le fichier urls de base. En revanche les erreurs 400 et 500 nous ne pouvons rien y faire.
+L'option qui permet de suivre les redirections est -L. Il va falloir faire une instruction conditionnelle : si erreur de type 300 alors -L:
+HOP HOP HOP ! Pas besoin de faire ça je peux tout simplement rajouter l'option -L dans mon curl tout simplement:
+
+http=$(curl -I -L "$line")
+
+
+
+2. l’encodage de la page, s’il est présent
+
+Voilà comment j'ai réfléchi : Lorsque j'observe les retours de code HTTP dans le terminal on identifie un paramètre (je ne sais pas si on peut appeler ça un paramètre) qui s'intitule Content-type.
+Dans ce content type remarque text/html et parfois charset= UTF-8. On en déduit que le charset correspond à l'encodage de la page. J'en déduis qu'il va falloir faire une condition qui vérifie si il y a un encodage
+préciser dans la requête ou non.
+Je pense qu'il faut utiliser un grep (expression régulière), mais je suis persuadé qu'il existe d'autres alternatives.
+Je ferais quelque chose comme ça :
+
+	encodage=$(curl -I -L "$line" | grep -o "charset=[a-zA-Z0-9]*-[0-9]*")   ## il faut préciser où doit chercher le grep c'est pour ça que j'ai réecrit le curl line et aussi petit rappel grep -o permet de recupp que
+	## l'élement qu'on cherche sinon il retourne toute la ligne
+	if [ -z "$encodage" ]
+	then
+		echo "La page ne précise pas son encodage"
+		encodage="NULL"
+	else
+		echo "La page a comme encodage $encodage"
+	fi
+
+
