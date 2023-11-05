@@ -1,0 +1,136 @@
+Exercice 1 :Préparation du fichier
+
+1. Récupérer le fichier (un simple pull du dépôt devrait suffire) et copier le vers votre dossier de travail
+2. Pour faciliter le comptage, transformer le texte pour obtenir un mot par ligne. Utiliser la commande grep est une bonne stratégie !
+
+Réflexion : Je vais faire une boucle while qui va lire tous les mots de mon texte et à chaque mot je ferais un retour à la ligne
+
+# cat candide.txt | while read -r mot
+# do
+#     echo -e "$mot\n"
+# done > mots.txt
+
+Cette technique n'a pas fonctionné j'ai donc utilisé le grep comme convenu en lui donnant comme regexp n'importe quelle chaine de caractère
+
+grep -o "[a-zA-Z0-9]*" candide.txt > mots.txt
+
+3. S’assurer que le texte est bien nettoyé (pas de ponctuation, tout en minuscule). La commande tr pourra vous être utile.
+
+Grâce à la commande tr man on peut s'avoir précisement comment fonctionne cette commande, on remarque que pour supprimer un élément il faut écrire tr -d ou pour convertir en minuscule tr 'A-Z' 'a-z',
+on peut aussi supprimer toute la ponctuation grâce à tr [:punct:]
+
+Le script devient :
+
+grep -o "[a-zA-Z0-9]*" candide.txt | tr 'A-Z' 'a-z' | tr -d ".,;:'" > mots.txt
+
+
+4. Faire un script qui effectue le traitement souhaité. Il doit prendre le chemin vers le fichier à traiter en
+argument et écrire le résultat sur la sortie standard.
+envoyez votre réponse sur votre git !
+
+chemin=$1
+
+if [ -z "$chemin" ]
+then
+    echo "Vous n'avez pas saisi d'URL en argument"
+else
+    echo "Opération réussie"
+    echo "voila le rendu :" > mots.txt
+    grep -o "[a-zA-Z0-9]*" "$chemin" | tr 'A-Z' 'a-z' | tr -d ".,;:'" >> mots.txt   ##il faut doublé le chevrons sinon cela effacera voila le rendu
+fi
+
+
+
+
+Exercice 2 : Édition d’une liste de fréquence
+En vous inspirant du travail réalisé les semaines passées (où nous comptions les entités). Écrire un script qui
+donne les mots les plus fréquents d’un texte. Ce script doit
+1. faire appel au script de l’exercice 1
+
+bash Exo1.sh
+
+
+2. prendre le nom du fichier texte en premier argument
+
+J'ai passé beaucoup de temps sur cette question alors que ça résolution était toute simple j'avais mon exo1 qui n'avait pas bougé et mon exo 2 ressemblait à ça :
+
+script="$1"
+if [ -z "script"]
+then
+    echo "Ce programme appelle un script mais vous devez indiquer lequel en argument"
+else
+
+    bash "$script"
+fi
+
+Pour appeler dans le terminal je faisais donc ./Exo2 ./Exo.sh ./candide.txt mais j'était bloqué car le script était bloqué et ne trouvait pas le fichier. Il a donc fallu préciser que mon script exo2 comportait 2
+argument :
+
+
+script="$1"
+fichier="$2"
+
+if [ -z "$script" ] || [ -z "$fichier" ]
+then
+    echo "Ce programme appelle un script et un fichier, mais vous n'avez pas indiqué lesquels"
+else
+    bash "$script" "$fichier"
+fi
+
+
+
+3. prendre le nombre de mots à afficher en second argument optionnel. Si ce nombre de mot n’est pas donné,
+afficher les 25 plus fréquents par défaut.
+envoyez votre réponse sur votre git !
+
+J'ai passé beaucoup de temps pour cette question aussi. J'ai donc pris 3 arguments pour faire cette question comme pour la question 2 j'ai du définir 2 arguments pour avancer.
+Je ne suis vraiment pas sûr que j'ai bien respecté ce que demandait l'exercice car je me retrouve avec 3 arguments dorénavant.
+Ce qui m'a fait perdre beaucoup de temps dans celui là est qu'il fallait tout simplement prendre le fichier dans lequel les mots était trié mot par mot et non pas le fichier candide.txt
+
+script="$1"
+fichier="$3"
+nombreMots="$3"
+
+if [ -z "$nombreMots" ]
+then
+    echo "Vous n'avez pas donnez le nombre de mots que vous souhaitiez afficher donc par défaut cela affichera 25 mots"
+    nombreMots=25
+fi
+
+if [ -z "$script" ] || [ -z "$fichier" ]
+then
+    echo "Ce programme appelle un script et un fichier, mais vous n'avez pas indiqué lesquels"
+else
+    bash "$script" "$fichier"
+
+fi
+
+grep "[a-zA-Z0-9]*" mots.txt | sort | uniq -c | sort -nr | head -n $nombreMots > motsTrie.txt         ##Attention il faut bien préciser le document sur lequel on effectue le grep ici ça se sera mot.txt
+echo "Opération réussie allez voir le fichiermotsTrie, il devrait faire son trie sur les $nombreMots mots les plus fréquents"
+
+
+Exercice 3 : Liste de fréquences de bigrammes
+Pour cet exercice, vous serez moins guidé et il vous faudra faire preuve d’imagination.
+On cherche à obtenir la liste de fréquences des bigrammes de mots. C’est à dire des suites de deux mots consécutifs.
+Dans la phrase précédente, les bigrammes seraient :
+C est
+est à
+à dire
+dire des
+des suites
+suites de
+de deux
+deux mots
+mots consécutifs
+Proposez un script semblable à celui produit à l’exercice 2, mais qui donne des résultats pour les bigrammes
+Quelques remarques :
+
+1. La commande paste vous sera utile.
+2. On peut arriver au résultat sans utiliser de boucle dans notre script.
+3. Vous pouvez générer des fichiers intermédiaires et aller vers le résultat en plusieurs étapes.
+envoyez votre réponse sur votre git !
+
+
+Réflexion : Je me servirai du fichier txt mots.txt qui contient tous les mots séparés et je ferais en sorte de paste le mot qui suit avec le mot qui le précède en faisant une boucle for ou while ?
+Une autre idée je viens de me renseigner sur le fonctionnement de paste, effectivement cela me sempble plus simple de l'utiliser. Il faudrait que j'arrive à prendre 2 documents et les pastes ensembles.
+Un document prendrait un mot sur 2 et l'autre document prendrait l'inverse ensuite en les concaténant avec paste cela permettrait de faire des bigrammes.
