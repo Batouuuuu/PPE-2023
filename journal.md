@@ -135,3 +135,50 @@ Malgré cet inconvénient, je me suis senti plus à l'aise pour faire des script
 Travail sur le projet
 
 Avec mon groupe constitué de Keming et Marie nous avons commencé à faire la liste des mots qui nous semblaient interessant pour le projet à réaliser. Nous hésitons encore entre plusieurs mots. Nous ne sommes pas certains d’avoir vraiment compris le critère de sélection que nous devions privilégier pour trouver un mot. Le mot doit-il être polysémique par exemple. Nous poserons ces questions à la prochaine séance
+
+
+6eme séance 25/10
+
+Dans cette séance, nous avons commencé les prémices du script qui nous servira à récuppérer les pages web qui nous interessent. Je conseille de relire le script que j'ai fait il s'intitule miniprojet.sh et se trouve dans
+le dossier travail perso.
+Dans ce script nous avons appris à gérer les redirections vers d'autres pages webs lorsqu'une requete HTTP nous renvoit le code 300. En effet, seul cette erreur de code peut être travailler car pour 400 et 500
+nous ne pourrons rien y faire. Ainsi, il faudra utiliser l'option -L qui prend en compte la redirection. L'option curl -I permet de ne renvoyer que les informations de requete HTTP ce qui est important
+car avant de pouvoir extraire une page web nous vérifions le code http qu'elle renvoit et si elle est encodé correctement (on vérifie cela avec une regexp voir code ci-dessus)
+
+numeroLigne=1
+while read -r line;
+do
+	http=$(curl -I -L "$line")
+	encodage=$(curl -I -L "$line" | grep -o "charset=[a-zA-Z0-9]*-[0-9]*")   ## il faut préciser où doit chercher le grep c'est pour ça que j'ai réecrit le curl line et aussi petit rappel grep -o permet de recupp que
+	## l'élement qu'on cherche sinon il retourne toute la ligne
+	if [ -z "$encodage" ]
+	then
+		echo "La page ne précise pas son encodage"
+		encodage="NULL"
+	else
+		echo "La page a comme encodage $encodage"
+	fi
+	echo -e "${numeroLigne}\t${line}\t${encodage}\t${http}";      ## Il faut mettre encodage avant http car sinon encodage s'affiche après le travail fait par la variable http et ce n'est pas très lisible
+	numeroLigne=$(expr $numeroLigne + 1)
+done < "$CHEMIN"
+
+
+Pour ce qui est des exercices supplémentaires j'ai eu quelques difficulés pour l'exo 2 en effet je ne parvenait pas à intégrer l'argument de l'exo 1 dans l'exo2 càd. Je lance l'execution de mon script exo2 comme ça :
+./Exo2.sh ./Exo1.sh candide.txt (le problème est que le script exo n'arrivait pas à comprendre mon argument candide qui correspond pourtant au chemin d'accès pour lui) J'ai donc défini 2 arguments au script 2
+script et fichier je ne comprends toujours pas pourquoi mon ancienne méthode n'a pas marché pourtant logiquement ça devrait fonctionner.
+Il faut que je me souvienne de poser la question en cours. (mon ancien script pour l'exo2 et 1 sont collés dans Exercices séance 6 > Exercices.txt)
+
+Je ne parviens pas à faire l'exercice 3 :
+Réflexion : Je me servirai du fichier txt mots.txt qui contient tous les mots séparés et je ferais en sorte de paste le mot qui suit avec le mot qui le précède en faisant une boucle for ou while ?
+Une autre idée je viens de me renseigner sur le fonctionnement de paste, effectivement cela me sempble plus simple de l'utiliser. Il faudrait que j'arrive à prendre 2 documents et les pastes ensembles.
+Un document prendrait un mot sur 2 et l'autre document prendrait l'inverse ensuite en les concaténant avec paste cela permettrait de faire des bigrammes.
+
+
+Travail sur le projet :
+
+Le travail a avancé nous avons choisi de prendre le mot "devoir" qui nous semble être interessant de par sa polysémie. Nous commençons donc le travail de récuppérage d'url.
+
+
+
+
+
