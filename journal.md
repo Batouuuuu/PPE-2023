@@ -168,15 +168,30 @@ Pour ce qui est des exercices supplémentaires j'ai eu quelques difficulés pour
 script et fichier je ne comprends toujours pas pourquoi mon ancienne méthode n'a pas marché pourtant logiquement ça devrait fonctionner.
 Il faut que je me souvienne de poser la question en cours. (mon ancien script pour l'exo2 et 1 sont collés dans Exercices séance 6 > Exercices.txt)
 
+Après avoir demandé au prof la solution est toute simple je ne sais pas pourquoi (à retester) en gros il suffit juste d'appeler le script exo1.sh mais je crois que ça ne marchait pas à revoir
+
 Je ne parviens pas à faire l'exercice 3 :
 Réflexion : Je me servirai du fichier txt mots.txt qui contient tous les mots séparés et je ferais en sorte de paste le mot qui suit avec le mot qui le précède en faisant une boucle for ou while ?
 Une autre idée je viens de me renseigner sur le fonctionnement de paste, effectivement cela me sempble plus simple de l'utiliser. Il faudrait que j'arrive à prendre 2 documents et les pastes ensembles.
 Un document prendrait un mot sur 2 et l'autre document prendrait l'inverse ensuite en les concaténant avec paste cela permettrait de faire des bigrammes.
 
+En fait l'exercice3 était réussi mais juste les chevrons étaient doublés >> ce qui faisait que les bigrammes étaient écrits à la suite de Candide.txt
+
 
 Travail sur le projet :
 
 Le travail a avancé nous avons choisi de prendre le mot "devoir" qui nous semble être interessant de par sa polysémie. Nous commençons donc le travail de récuppérage d'url.
+
+
+Séance 7 : 7/11
+
+Pendant cette séance nous avons corrigé le miniprojet, à partir de maintenant je m'en servirai de base pour la suite du projet, il s'intitule MiniProjetCorige.
+La suite du miniprojet est que la sortie soit sous forme de tableau HTML. Ma première idée a été d'ajouter >>tableau.html à chaque itération de la boucle while, sauf qu'en faisant ça cela ne prenait pas en compte
+le balisage html. Pour bien le faire il a fallu l'écrire en brut à l'aide d'echos que j'ai écris dans mon fichier >>tableau.html.
+A noter que dans mon script la première écriture du balisage est écrite avec un simple chevron >tableau, cela permet de nettoyer ce qui est écrit de base et de ne pas avoir de surécriture dans le fichier html
+à chaque fois que celui-ci est lancé.
+Par la suite il faudra je pense travailler la mise en page de ce tableau avec du CSS.
+
 
 
 
