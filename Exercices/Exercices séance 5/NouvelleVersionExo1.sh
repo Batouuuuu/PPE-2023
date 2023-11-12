@@ -1,11 +1,13 @@
-#!/bin/bash
+#!/bin/bash/
 
-if [ -n "$1" ]
+if [ -n $1 ]
 then
-    ANNEE="$1"
+    ANNEE=$1
+    REP=$2
     if [[ "$ANNEE" =~ ^20(16|17|18) ]]
     then
-        FICHIER="/home/batou/Documents/M1 TAL/Programmation et projets encadrés/Travail perso/PPE-2023/Manip fichiers/ANN/$ANNEE/"*"/"*".ann"
+        FICHIER="$REP/$ANNEE/*/*.ann"
+
 
         # Compter et afficher les entités avec uniq -c
         cat "$FICHIER" | uniq -c

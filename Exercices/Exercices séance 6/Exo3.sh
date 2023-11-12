@@ -20,7 +20,7 @@ do
         mot="$line"
     else
         bigramme="$mot $line"               ##si le mot n'est pas vide alors la variable bigramme va afficher le mot et le mot qui suit
-        echo "$bigramme" >> bigramme.txt
+        echo "$bigramme" > bigramme.txt  ## J'ai fait une erreur en fait les bigrammes s'écrivent mais j'avais doublé le chevrons ce qui fait que le doc est énorme
         mot="$line"  ##très important il faut terminer notre instruction en n'oubliant pas de donner la valeur mot à line pour pouvoir passer au mot suivant
     fi
 done < "$fichier"

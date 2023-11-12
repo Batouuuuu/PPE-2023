@@ -19,5 +19,3 @@ cat /home/batou/Documents/M1\ TAL/Programmation\ et\ projets\ encadrés/Travail\
 # chmod +x premier_script.sh
 
 
-
-chmod +x premier_script.sh
