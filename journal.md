@@ -193,6 +193,11 @@ A noter que dans mon script la première écriture du balisage est écrite avec 
 Par la suite il faudra je pense travailler la mise en page de ce tableau avec du CSS.
 
 
+Séance 8 : 15/11
+
+J'ai du rajouté dans mon script Miniprojet2 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"> afin de pouvoir lié correctement bulma. J'ai ensuite créer un fichier css que j'ai lié aussi j'ai essayé de m'amuser un peu dessus. Mais Bulma semble supérieure au class que je définie manuellement dans mon fichier css.
+
+
 
 
 

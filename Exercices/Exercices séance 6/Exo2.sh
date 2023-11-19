@@ -28,3 +28,26 @@ fi
 grep "[a-zA-Z0-9]*" mots.txt | sort | uniq -c | sort -nr | head -n $nombreMots > motsTrie.txt         ##Attention il faut bien préciser le document sur lequel on effectue le grep ici ça se sera mot.txt
 echo "Opération réussie allez voir le fichiermotsTrie, il devrait faire son trie sur les $nombreMots mots les plus fréquents"
 
+
+
+
+### CORRECTION
+
+##### cat mots.txt | sort | uniq -c | sort -nr | head -n $nombreMots    ##sort trie par l'alphabet ## uniq -c affiche le compte (occurence) |   (pour vérifier on peut faire un | less à la fin de chaque commande pour
+##### vérifierà quoi chaque option sert ) | head prend par le début du doc tail par la fin
+
+## FICHIER="$1"
+
+##if [ -z "$TOPN" ]      ## -z est ce que la variable qui suit est vide
+# then
+#     TOPN=25
+# else
+#     TOPN="$2"
+# if ! [[ "$TOPN" =~ ^0*[1-9][0-9]*$ ]]         ##les [[ ]] permettent de faire un =~ qui permet d'utiliser des expressions régulières
+# then
+#     echo "Donnez moi un entier positif non nul "
+##    exit
+##fi
+## echo $TOPN
+
+## bash Exo1.sh $FICHIER | sort | uniq -c | sort -nr | head -n $nombreMots > motsTrie.txt   ##pour vérifier qu'on a le bon nombre -wc l

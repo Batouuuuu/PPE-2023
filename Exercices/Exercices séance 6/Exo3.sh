@@ -25,3 +25,22 @@ do
     fi
 done < "$fichier"
 
+
+######## CORRECTION SANS LA BOUCLE ET AVEC LE PASTE
+## Paste (permet de reconstruire un fichier tabulé)
+## on prend la sortie de l'exo2 1 fois > col1
+## on la reprend une 2eme fois >col2
+# paste col1 col2 | head
+
+
+## paste prend plusieurs fichiers (flux de lignes dans linux)   tr traite les chaine comme des flux  paste marche avec des fichier contrairement à tr qui lui se fait sur des caractères.
+## mais le fonctionnement est le même (les lignes sont uniquement des mots) on va avoir des bigrammes de mots qui vont se faire de façon naturelle
+
+
+## FICHIER ="$1"
+## bash text2colonne $FICHIER > col1
+## echo "_" > col2          ## Permet de créer un décalage au début du texte 2 col2
+## bash text2colonne $FICHIER >> col2
+
+## paste col1 col2 | head
+
