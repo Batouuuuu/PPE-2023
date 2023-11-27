@@ -196,7 +196,25 @@ Par la suite il faudra je pense travailler la mise en page de ce tableau avec du
 Séance 8 : 15/11
 
 J'ai du rajouté dans mon script Miniprojet2 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"> afin de pouvoir lié correctement bulma. J'ai ensuite créer un fichier css que j'ai lié aussi j'ai essayé de m'amuser un peu dessus. Mais Bulma semble supérieure au class que je définie manuellement dans mon fichier css.
+J'ai eu énorement de problème lors de mes push sur git pendant ce projet. J'avais supprimé le doc index.html du root en voulant le placer dans le fichier miniprojet3 avec les autres fichiers css et l'autre page html.
+Il a fallu que je remette l'index dans le root et refaire un push pour le dossier miniprojet 3 sans l'index à l'interieur.
 
+Séance 9 : 22/11
+
+J'ai trouvé que c'était sûrment une des meilleures séances le fait de travailler en groupe et de mettre en commun nos idées. J'ai beaucoup appris, j'avais quelques difficulés pour faisantliser le script.
+Tout d'abord la puissance de basename !!!!!
+OUI basename c'est trop fort, il faut l'utiliser afin de récuppérer le nom de notre fichier.  lang=$(basename $URLS .txt). Par exemple lorsque je lancerai mon script : ./script-fr.sh URLS/fr.txt cela conservera
+fr.
+Comme dans mes autres documents les pages aspirées sont sous cette formes fr-(numéro).html dump_html=$(curl $URL > "../aspirations/${lang}-${lineno}.html"). A savoir qu'en faisant ça cela il faudra
+la mettre dans la boucle while ainsi nous générerons un html (aspiration) pour chaque url.
+Même raisonnement pour les dumps mais cette fois il faut utiliser lynx : dump_text=$(lynx -dump $URL > "../dumps-text/${lang}-${lineno}.txt").
+On n'oublie pas de mettre un compteur qui va compter notre regexp du mot devoir(s) :compte=$(cat ../dumps-text/${lang}-${lineno}.txt | egrep -o "devoir(s)" -c)
+Et le contexte autour du mot : contexte=$(cat ../dumps-text/${lang}-${lineno}.txt | egrep -A 2 -B 2 "devoir(s)" > "../contextes/${lang}-${lineno}.txt")
+Nous avons encore quelques difficulés pour aspirer les pages en chinois nous verrons au prochain cours.
+A noter qu'il a fallu remettre un dossier index dans notre root.
+
+NB : j'ai fait 2 dossiers un pour m'entrainer avec les différents scripts (Programmation_et_projets_encadres>Travail_perso>Entrainement_pour_le_Projet_Groupe)
+et le vrai dossier celui qui est cloné avec le GitHub (Programmation_et_projets_encadres>Groupe-projet-PPE)
 
 
 
