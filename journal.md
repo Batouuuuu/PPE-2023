@@ -217,6 +217,17 @@ NB : j'ai fait 2 dossiers un pour m'entrainer avec les différents scripts (Prog
 et le vrai dossier celui qui est cloné avec le GitHub (Programmation_et_projets_encadres>Groupe-projet-PPE)
 
 
+Séance 10 : 28/11
 
+Séance très dense où l'outil itrameur nous a été présenté.
+Nous avons aussi appris ce qu'était un concordancier et comment en intégrer un dans notre script.
+
+Je me suis retrouvé confronté a plusieurs problèmes github lors du travail sur le script avec mon groupe.
+L'une des commandes la plus utile est le git reset HEAD~1 qui nous permet de revenir un commit en avant lorsqu'il y a interference entre 2 commits.
+En revanche un problème qui était déjà là lors de la dernière séace c'est le grep qui compte le nombre de mot devoir(s) dans les pages HTML. Je ne comprends pas mais il m'indique 0 occurence sur des pages où le mot
+apparait pourtant. Je tacherai de rettravailler cette expression pour la prochaine fois.
+Pour ce qui est de l'outil itrameur, je ne suis pas certain d'avoir compris toutes les subtilités de l'outil ou même que nous aillions répondu correctements à certaines questions du TD,
+ça a l'air d'être un outil très puissant.
+Je suis impatient de travailler sur la mise en page du site et de finaliser ce projet !  nous croulons sous les projets en ce moment, ce n'est pas le moment de lâcher !
 
 
