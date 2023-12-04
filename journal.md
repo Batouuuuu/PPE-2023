@@ -224,8 +224,12 @@ Nous avons aussi appris ce qu'était un concordancier et comment en intégrer un
 
 Je me suis retrouvé confronté a plusieurs problèmes github lors du travail sur le script avec mon groupe.
 L'une des commandes la plus utile est le git reset HEAD~1 qui nous permet de revenir un commit en avant lorsqu'il y a interference entre 2 commits.
-En revanche un problème qui était déjà là lors de la dernière séace c'est le grep qui compte le nombre de mot devoir(s) dans les pages HTML. Je ne comprends pas mais il m'indique 0 occurence sur des pages où le mot
+- En revanche un problème qui était déjà là lors de la dernière séace c'est le grep qui compte le nombre de mot devoir(s) dans les pages HTML. Je ne comprends pas mais il m'indique 0 occurence sur des pages où le mot
 apparait pourtant. Je tacherai de rettravailler cette expression pour la prochaine fois.
+- L'autre problème majeur que j'ai rencontré se trouve dans le push sur GitHub. J'ai déjà plusieurs répertoires sur GitHub seulement lorsque je veux push directement le repertoire Groupes-PPE dans lequel se trouve
+tous nos fichiers pour le projet. Cela me le push sur un autre repéertoire dans lequel je me suis amusé a codé un jeu. Je n'arrive pas à le push dans le bon repertoire. Je me retrouve du coup à devoir push
+tous les fichiers qui ont été modifiés, cela est très contraignant.
+
 Pour ce qui est de l'outil itrameur, je ne suis pas certain d'avoir compris toutes les subtilités de l'outil ou même que nous aillions répondu correctements à certaines questions du TD,
 ça a l'air d'être un outil très puissant.
 Je suis impatient de travailler sur la mise en page du site et de finaliser ce projet !  nous croulons sous les projets en ce moment, ce n'est pas le moment de lâcher !
