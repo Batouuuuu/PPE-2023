@@ -235,3 +235,20 @@ Pour ce qui est de l'outil itrameur, je ne suis pas certain d'avoir compris tout
 Je suis impatient de travailler sur la mise en page du site et de finaliser ce projet !  nous croulons sous les projets en ce moment, ce n'est pas le moment de lâcher !
 
 
+
+Semaine des vacances
+
+Je travaille actuellement sur le site web qui servira à présenter notre travail. N'ayant pas appris à me servir des frameworks, je me sers du css pour essayer de faire un site web convenable.
+Cependant je me retrouve confronté à plusieurs problèmes :
+
+1 - Comment faire pour gérer le header et le footer. En effet, ils sont tous les deux codés dans ma page index, mais j'aimerai ne pas avoir à les réecrire sur toutes mes pages à chaque fois.
+D'habitude je faisais ça facilement avec du php avec php include once header sur toutes mes pages et cela me mettait mon header. Seulement l'hébergement de site web GitHub ne permet pas d'utiliser du php.
+J'ai donc pensé au Javascript mais je ne maitrise pas ce langage j'ai essayé de faire une fonction à l'interieur de laquelle j'utilisais des balises html et j'appelle mon fichier js en début de mon programme mais
+cela n'a pas fonctionné. Donc pour l'instant je dois me contenter de tout écrire à chaque fois ce qui n'est pas très pro.
+
+2 - La gestion des images, comme je code tout en css cela pose plusieurs problèmes en fonction de la taille des écrans des utilisateurs pour remédier à ce problème j'utilise des média querry, cepedant c'est assez
+compliqué car sur notre page d'index nous faisons superposer une image sur une autre et il est très difficile de leur faire conserver leurs proportions à toutes les deux en fonction de la taille de l'écran.
+
+
+Afin de rendre notre page disponible dans les langues sur lesquelles nous travaillons j'utilise un outil en open source de google traduction qu'il suffit de lancer avec quelques lignes de js.
+
